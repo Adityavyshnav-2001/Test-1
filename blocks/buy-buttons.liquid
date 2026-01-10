@@ -224,12 +224,6 @@
           %}
 
           {% content_for 'block',
-            type: 'buy-now',
-            id: 'buy-now',
-            can_add_to_cart: can_add_to_cart
-          %}
-
-          {% content_for 'block',
             type: 'accelerated-checkout',
             id: 'accelerated-checkout',
             can_add_to_cart: can_add_to_cart,
@@ -768,13 +762,6 @@
           "static": true,
           "settings": {
             "style_class": "button-secondary"
-          }
-        },
-        "buy-now": {
-          "type": "buy-now",
-          "static": true,
-          "settings": {
-            "style_class": "button"
           }
         },
         "accelerated-checkout": {

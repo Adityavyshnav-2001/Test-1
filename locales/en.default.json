@@ -60,7 +60,6 @@
     // Quick add button on product cards, shortened version of add to cart
     "add": "Add",
     "add_to_cart": "Add to cart",
-    "buy_now": "Buy now",
     // Success message shown after adding item to cart
     "added": "Added",
     // Button to apply discount code to cart
