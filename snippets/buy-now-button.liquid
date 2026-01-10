@@ -11,18 +11,13 @@
   assign buy_now_text = 'actions.buy_now' | t
 -%}
 
-<form method="post" action="/cart/add" class="buy-now-form">
-  <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-  <input type="hidden" name="quantity" value="1">
-  <input type="hidden" name="return_to" value="/checkout">
-  
+<buy-now-button class="buy-now-form" data-variant-id="{{ product.selected_or_first_available_variant.id }}">
   <button
     {% if id != blank %}
       id="{{ id }}"
     {% endif %}
-    type="submit"
-    name="add"
-    class="button {{ class }}"
+    type="button"
+    class="button {{ class }} buy-now-btn"
     {% unless can_add_to_cart %}
       disabled
     {% endunless %}
@@ -33,7 +28,53 @@
       </span>
     </span>
   </button>
-</form>
+</buy-now-button>
+
+<script>
+  if (!customElements.get('buy-now-button')) {
+    customElements.define('buy-now-button', class BuyNowButton extends HTMLElement {
+      constructor() {
+        super();
+        this.button = this.querySelector('button');
+        this.button.addEventListener('click', this.handleClick.bind(this));
+      }
+
+      async handleClick(event) {
+        event.preventDefault();
+        
+        const variantId = this.dataset.variantId;
+        
+        if (!variantId) return;
+        
+        this.button.disabled = true;
+        
+        try {
+          const response = await fetch('/cart/add.js', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              items: [{
+                id: parseInt(variantId),
+                quantity: 1
+              }]
+            })
+          });
+          
+          if (response.ok) {
+            window.location.href = '/checkout';
+          } else {
+            this.button.disabled = false;
+          }
+        } catch (error) {
+          console.error('Buy now error:', error);
+          this.button.disabled = false;
+        }
+      }
+    });
+  }
+</script>
 
 {% stylesheet %}
   .buy-now-form {
