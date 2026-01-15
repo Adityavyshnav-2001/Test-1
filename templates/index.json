@@ -197,7 +197,7 @@
                   "type": "text",
                   "name": "t:names.heading",
                   "settings": {
-                    "text": "<p>New this season</p>",
+                    "text": "<h1><strong>New this season</strong></h1>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -223,7 +223,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Intentional design. Elevated comfort.<br/>A new chapter by <strong>1o8</strong>.</p>",
+                    "text": "<h4>Intentional design. Elevated comfort.<br/>A new chapter by <strong>1o8</strong>.</h4>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
