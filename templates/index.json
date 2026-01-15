@@ -636,7 +636,7 @@
         ],
         "layout_type": "grid",
         "carousel_on_mobile": true,
-        "columns": 5,
+        "columns": 4,
         "mobile_columns": "2",
         "mobile_card_size": "60cqw",
         "columns_gap": 0,
@@ -658,8 +658,8 @@
         "text_WDkNgd": {
           "type": "text",
           "settings": {
-            "text": "<h5>GOD AMONGST THREADS</h5>",
-            "width": "fit-content",
+            "text": "<h2>GOD AMONGST THREADS</h2>",
+            "width": "100%",
             "max_width": "normal",
             "alignment": "left",
             "type_preset": "h2",
@@ -688,9 +688,9 @@
       "settings": {
         "movement_direction": "reverse",
         "color_scheme": "scheme-5",
-        "padding-block-start": 48,
-        "padding-block-end": 48,
-        "gap_between_elements": 16
+        "padding-block-start": 46,
+        "padding-block-end": 46,
+        "gap_between_elements": 38
       }
     },
     "section_8zY7P4": {
