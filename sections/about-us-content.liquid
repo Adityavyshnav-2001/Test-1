@@ -1,0 +1,166 @@
+{% schema %}
+{
+  "name": "About Us Content",
+  "settings": [
+    {
+      "type": "text",
+      "id": "hero_title",
+      "label": "Hero Title",
+      "default": "About 1o8"
+    },
+    {
+      "type": "textarea",
+      "id": "hero_subtitle",
+      "label": "Hero Subtitle",
+      "default": "Elevating Brand with Style & Elegance"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero Background Image"
+    },
+    {
+      "type": "textarea",
+      "id": "brand_story",
+      "label": "Brand Story",
+      "default": "At 1o8, we don’t just create merch — we channel energy, culture, and consciousness into every thread. Rooted in devotion and inspired by the Bhagavad Gita and sacred Shastras, our designs translate ancient wisdom into modern streetwear. Each piece is crafted to carry meaning, spark emotion, and tell a story — clothing that resonates beyond style."
+    },
+     {
+      "type": "image_picker",
+      "id": "feature_image",
+      "label": "Feature Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Us Content"
+    }
+  ]
+}
+{% endschema %}
+
+<div class="about-us-section">
+  <div class="about-hero" style="{% if section.settings.hero_image %}background-image: url('{{ section.settings.hero_image | image_url: width: 2000 }}');{% else %}background-color: #111;{% endif %}">
+    <div class="about-hero-content">
+      <h1 class="about-title">{{ section.settings.hero_title }}</h1>
+      <p class="about-subtitle">{{ section.settings.hero_subtitle }}</p>
+    </div>
+  </div>
+
+  <div class="about-story-container">
+    <div class="about-split">
+      <div class="about-text">
+        <h2>Our Story</h2>
+        <div class="about-description">
+          {{ section.settings.brand_story | newline_to_br }}
+        </div>
+      </div>
+      <div class="about-image">
+         {% if section.settings.feature_image %}
+          {{ section.settings.feature_image | image_url: width: 800 | image_tag: loading: 'lazy', class: 'feature-img' }}
+        {% else %}
+          <div class="placeholder-image">
+            {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .about-us-section {
+    font-family: 'Avenir Next', sans-serif; /* Or theme font */
+    color: #333;
+  }
+  .about-hero {
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    color: white;
+    text-align: center;
+    background-color: #000;
+  }
+  .about-hero::before {
+    content: '';
+    position: absolute;
+    top:0; left:0; right:0; bottom:0;
+    background: rgba(0,0,0,0.4);
+  }
+  .about-hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+  }
+  .about-title {
+    font-size: 4rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    color: #fff;
+  }
+  .about-subtitle {
+    font-size: 1.2rem;
+    font-style: italic;
+    opacity: 0.9;
+    color: #e0e0e0;
+  }
+
+  .about-story-container {
+    max-width: 1200px;
+    margin: 80px auto;
+    padding: 0 20px;
+  }
+  .about-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .about-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #000;
+    display: inline-block;
+    padding-bottom: 10px;
+  }
+  .about-description {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+  }
+  .about-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px; /* Optional */
+  }
+  .placeholder-image svg {
+    width: 100%;
+    height: auto;
+    background: #f0f0f0;
+  }
+
+  @media (max-width: 768px) {
+    .about-split {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    .about-title {
+      font-size: 2.5rem;
+    }
+    .about-text {
+      order: 2;
+    }
+    .about-image {
+      order: 1;
+    }
+  }
+</style>

@@ -1,0 +1,156 @@
+{% schema %}
+{
+  "name": "Contact Form Custom",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Get in Touch"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "We'd love to hear from you."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact Form Custom"
+    }
+  ]
+}
+{% endschema %}
+
+<div class="contact-custom-section">
+  <div class="contact-header">
+    <h1>{{ section.settings.title }}</h1>
+    <p>{{ section.settings.subtitle }}</p>
+  </div>
+
+  <div class="contact-form-container">
+    {% form 'contact' %}
+      {% if form.posted_successfully? %}
+        <p class="form-success">
+          Thanks for contacting us. We'll get back to you as soon as possible.
+        </p>
+      {% endif %}
+
+      {{ form.errors | default_errors }}
+
+      <div class="form-group-row">
+        <div class="form-group">
+          <label for="ContactFormName">Name</label>
+          <input type="text" id="ContactFormName" name="contact[name]" placeholder="Your Name" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}">
+        </div>
+        <div class="form-group">
+          <label for="ContactFormEmail">Email</label>
+          <input type="email" id="ContactFormEmail" name="contact[email]" placeholder="Your Email" autocorrect="off" autocapitalize="off" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" class="{% if form.errors contains 'email' %}input--error{% endif %}">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="ContactFormPhone">Phone (Optional)</label>
+        <input type="tel" id="ContactFormPhone" name="contact[phone]" placeholder="Your Phone Number" pattern="[0-9\-]*" value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}">
+      </div>
+
+      <div class="form-group">
+        <label for="ContactFormMessage">Message</label>
+        <textarea rows="6" id="ContactFormMessage" name="contact[body]" placeholder="Your Message">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+      </div>
+
+      <button type="submit" class="contact-submit-btn">Send Message</button>
+
+    {% endform %}
+  </div>
+</div>
+
+<style>
+  .contact-custom-section {
+    max-width: 800px;
+    margin: 80px auto;
+    padding: 0 20px;
+    font-family: 'Avenir Next', sans-serif;
+  }
+  .contact-header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  .contact-header h1 {
+    font-size: 3rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+  }
+  .contact-header p {
+    color: #666;
+    font-size: 1.1rem;
+  }
+  .contact-form-container {
+    background: #fff; /* or transparent */
+  }
+  .form-group-row {
+    display: flex;
+    gap: 20px;
+  }
+  .form-group {
+    margin-bottom: 20px;
+    flex: 1;
+  }
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 0;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+    background: #fafafa;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: #000;
+    background: #fff;
+  }
+  .contact-submit-btn {
+    display: inline-block;
+    background: #000;
+    color: #fff;
+    padding: 15px 40px;
+    border: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.3s;
+    width: 100%;
+  }
+  .contact-submit-btn:hover {
+    background: #333;
+  }
+  .form-success {
+    background: #d4edda;
+    color: #155724;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #c3e6cb;
+  }
+
+  @media (max-width: 600px) {
+    .form-group-row {
+      flex-direction: column;
+      gap: 0;
+    }
+  }
+</style>
