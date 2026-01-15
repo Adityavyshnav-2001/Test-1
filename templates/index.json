@@ -630,13 +630,13 @@
       "settings": {
         "collection_list": [
           "tote-bags",
-          "oversized-tshirt-1",
           "regular",
-          "oversized-tshirt"
+          "oversized-tshirt",
+          "oversized-tshirt-1"
         ],
         "layout_type": "grid",
         "carousel_on_mobile": true,
-        "columns": 4,
+        "columns": 5,
         "mobile_columns": "2",
         "mobile_card_size": "60cqw",
         "columns_gap": 0,
@@ -658,7 +658,7 @@
         "text_WDkNgd": {
           "type": "text",
           "settings": {
-            "text": "<p>A world of timeless designs that honor the people who make them & the places they’re made.</p>",
+            "text": "<h5>GOD AMONGST THREADS</h5>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -669,7 +669,7 @@
             "letter_spacing": "tight",
             "case": "none",
             "wrap": "nowrap",
-            "color": "",
+            "color": "var(--color-foreground)",
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
@@ -686,7 +686,7 @@
       ],
       "name": "t:names.marquee",
       "settings": {
-        "movement_direction": "normal",
+        "movement_direction": "reverse",
         "color_scheme": "scheme-5",
         "padding-block-start": 48,
         "padding-block-end": 48,
