@@ -154,7 +154,7 @@
             "inherit_color_scheme": true,
             "color_scheme": "",
             "height": "fit",
-            "position": "bottom",
+            "position": "center",
             "border": "none",
             "border_width": 1,
             "border_opacity": 100,
