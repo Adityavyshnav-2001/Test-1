@@ -724,6 +724,10 @@
       "block_order": [
         "video_CQx9HE"
       ],
+      "custom_css": [
+        "video::-webkit-media-controls {display: none !important;}",
+        "video::-moz-media-controls {display: none !important;}"
+      ],
       "name": "Video",
       "settings": {
         "content_direction": "column",
