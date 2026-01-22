@@ -630,9 +630,9 @@
       "settings": {
         "collection_list": [
           "tote-bags",
-          "regular",
+          "oversized-tshirt-1",
           "oversized-tshirt",
-          "oversized-tshirt-1"
+          "regular"
         ],
         "layout_type": "grid",
         "carousel_on_mobile": true,
