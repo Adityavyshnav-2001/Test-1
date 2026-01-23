@@ -48,6 +48,13 @@
       {% assign products_per_page = section.settings.products_per_page %}
     {% endif %}
 
+    {% if collection.products_count == 0 %}
+  <div class="coming-soon-wrapper">
+    <h2>Coming Soon.....</h2>
+    <p>Our hoodie collection is launching very soon. Stay tuned!</p>
+  </div>
+{% else %}
+
     {% paginate collection.products by products_per_page %}
       {% capture children %}
         {% for product in collection.products %}
@@ -73,6 +80,7 @@
         enable_infinite_scroll: section.settings.enable_infinite_scroll
       %}
     {% endpaginate %}
+    {% endif %}
   </div>
 </results-list>
 
