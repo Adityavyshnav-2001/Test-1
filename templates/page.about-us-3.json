@@ -1,0 +1,35 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "custom_liquid_LYTj3y": {
+      "type": "custom-liquid",
+      "name": "t:names.custom_liquid",
+      "settings": {
+        "custom_liquid": "<div class=\"custom-contact-container\">\n  <h1>Contact Us</h1>\n  <p>\n    For status on all queries and order-related queries, you can contact us at: \n    <br>\n    <a href=\"mailto:oneoeight.in@gmail.com\">oneoeight.in@gmail.com</a>\n  </p>\n</div>\n\n<style>\n  .custom-contact-container {\n    text-align: center;      /* Centers the text */\n    max-width: 600px;        /* Keeps the line length readable */\n    margin: 0 auto;          /* Centers the block on the page */\n  }\n\n  .custom-contact-container h3 {\n    margin-bottom: 10px;\n    font-size: 1.5em;        /* Adjusts the heading size */\n  }\n\n  .custom-contact-container p {\n    font-size: 1rem;\n    line-height: 1.6;\n  }\n\n  .custom-contact-container a {\n    text-decoration: underline;\n    font-weight: bold;\n    /* The color will inherit from your Scheme 5 settings automatically */\n  }\n</style>",
+        "color_scheme": "scheme-1",
+        "section_width": "full-width",
+        "padding-block-start": 76,
+        "padding-block-end": 0
+      }
+    },
+    "main": {
+      "type": "contact-form-custom",
+      "settings": {
+        "title": "Get in Touch",
+        "subtitle": "We'd love to hear from you."
+      }
+    }
+  },
+  "order": [
+    "custom_liquid_LYTj3y",
+    "main"
+  ]
+}
