@@ -11,7 +11,11 @@
   "sections": {
     "main": {
       "type": "about-us-content",
-      "settings": {}
+      "settings": {
+        "hero_title": "About 1o8",
+        "hero_subtitle": "Elevating Brand with Style & Elegance",
+        "brand_story": "At 1o8, we don’t just create merch — we channel energy, culture, and consciousness into every thread. Rooted in devotion and inspired by the Bhagavad Gita and sacred Shastras, our designs translate ancient wisdom into modern streetwear. Each piece is crafted to carry meaning, spark emotion, and tell a story — clothing that resonates beyond style."
+      }
     }
   },
   "order": [
