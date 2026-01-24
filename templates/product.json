@@ -353,7 +353,7 @@
                     "text_JWi37A": {
                       "type": "text",
                       "settings": {
-                        "text": "<p><strong>240 GSM French Terry Cotton</strong><br/><br/>Smooth outer finish, soft looped interior.<br/><br/>Midweight, breathable, and structured for all-day comfort.</p><p></p>",
+                        "text": "<p>{{ closest.product.metafields.custom.material_fabric | metafield_tag }}</p>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
