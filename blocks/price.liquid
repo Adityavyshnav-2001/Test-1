@@ -7,7 +7,9 @@
 
   assign is_coming_soon = false
   if product_resource.tags contains 'coming-soon'
-    assign is_coming_soon = true
+    if template.name != 'product'
+      assign is_coming_soon = true
+    endif
   endif
 -%}
 
@@ -112,12 +114,8 @@
 
   .coming-soon-text {
     display: block;
-    font-size: 1.25rem;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+    font-weight: 700;
     color: var(--color-foreground);
-    padding: 14px 0;
   }
 
   /* Volume pricing note should match unit-price styling (small, grey text) */
