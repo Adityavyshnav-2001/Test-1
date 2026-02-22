@@ -6,6 +6,11 @@
     assign product = collections.all.products.first
   endif
 
+  assign is_coming_soon = false
+  if product.tags contains 'coming-soon'
+    assign is_coming_soon = true
+  endif
+
   assign variant = closest.product.selected_or_first_available_variant
   assign inventory_quantity = variant.inventory_quantity
   assign inventory_policy = variant.inventory_policy
@@ -39,7 +44,9 @@
   class="buy-buttons-block buy-buttons-block--{{ block.id }}"
   {{ block.shopify_attributes }}
 >
-  {%- if product != blank -%}
+  {%- if is_coming_soon -%}
+    <span class="coming-soon-text">Coming Soon</span>
+  {%- elsif product != blank -%}
     {%- assign product_form_id = 'BuyButtons-ProductForm-' | append: section.id -%}
     <product-form-component
       data-section-id="{{ section.id }}"
@@ -252,7 +259,7 @@
   {%- endif -%}
 </span>
 
-{% if block_settings.show_pickup_availability %}
+{% if block_settings.show_pickup_availability and is_coming_soon == false %}
   <script
     src="{{ 'local-pickup.js' | asset_url }}"
     type="module"
@@ -675,6 +682,16 @@
     color: var(--color-foreground);
     font-size: var(--font-size--sm);
     font-weight: normal;
+  }
+
+  .coming-soon-text {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--color-foreground);
+    padding: 14px 0;
   }
 {% endstylesheet %}
 

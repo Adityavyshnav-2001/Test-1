@@ -4,6 +4,11 @@
   assign block_settings = block.settings
   assign product_resource = closest.product
   assign selected_variant = product_resource.selected_or_first_available_variant
+
+  assign is_coming_soon = false
+  if product_resource.tags contains 'coming-soon'
+    assign is_coming_soon = true
+  endif
 -%}
 
 {% liquid
@@ -47,40 +52,44 @@
   "
   {{ block.shopify_attributes }}
 >
-  {% render 'price',
-    show_unit_price: true,
-    product_resource: product_resource,
-    show_sale_price_first: block_settings.show_sale_price_first
-  %}
+  {%- if is_coming_soon -%}
+    <span class="coming-soon-text">Coming Soon</span>
+  {%- else -%}
+    {% render 'price',
+      show_unit_price: true,
+      product_resource: product_resource,
+      show_sale_price_first: block_settings.show_sale_price_first
+    %}
 
-  {% if block_settings.show_tax_info %}
-    <div class="tax-note">
-      {%- if cart.duties_included and cart.taxes_included -%}
-        {{ 'content.duties_and_taxes_included' | t }}
-      {%- elsif cart.taxes_included -%}
-        {{ 'content.taxes_included' | t }}
-      {%- elsif cart.duties_included -%}
-        {{ 'content.duties_included' | t }}
-      {%- endif -%}
+    {% if block_settings.show_tax_info %}
+      <div class="tax-note">
+        {%- if cart.duties_included and cart.taxes_included -%}
+          {{ 'content.duties_and_taxes_included' | t }}
+        {%- elsif cart.taxes_included -%}
+          {{ 'content.taxes_included' | t }}
+        {%- elsif cart.duties_included -%}
+          {{ 'content.duties_included' | t }}
+        {%- endif -%}
 
-      {%- if shop.shipping_policy.body != blank -%}
-        {{ 'content.shipping_policy' | t }}
-      {%- endif -%}
-    </div>
-  {% endif %}
+        {%- if shop.shipping_policy.body != blank -%}
+          {{ 'content.shipping_policy' | t }}
+        {%- endif -%}
+      </div>
+    {% endif %}
 
-  {%- if selected_variant != blank and block_settings.show_installments -%}
-    <div class="installments">
-      {%- assign product_form_installment_id = 'product-form-installment-' | append: block.id -%}
-      {%- form 'product', product_resource, id: product_form_installment_id, class: 'payment-terms' -%}
-        <input
-          type="hidden"
-          name="id"
-          value="{{ selected_variant.id }}"
-        >
-        {{ form | payment_terms }}
-      {%- endform -%}
-    </div>
+    {%- if selected_variant != blank and block_settings.show_installments -%}
+      <div class="installments">
+        {%- assign product_form_installment_id = 'product-form-installment-' | append: block.id -%}
+        {%- form 'product', product_resource, id: product_form_installment_id, class: 'payment-terms' -%}
+          <input
+            type="hidden"
+            name="id"
+            value="{{ selected_variant.id }}"
+          >
+          {{ form | payment_terms }}
+        {%- endform -%}
+      </div>
+    {%- endif -%}
   {%- endif -%}
 </product-price>
 
@@ -99,6 +108,16 @@
 
   .installments:not(:has(shopify-payment-terms)) {
     display: none;
+  }
+
+  .coming-soon-text {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--color-foreground);
+    padding: 14px 0;
   }
 
   /* Volume pricing note should match unit-price styling (small, grey text) */

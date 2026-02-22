@@ -24,7 +24,13 @@
   {% content_for 'blocks' %}
 {% endcapture %}
 
-{% if section.settings.enable_sticky_add_to_cart %}
+{% liquid
+  assign is_coming_soon_product = false
+  if product.tags contains 'coming-soon'
+    assign is_coming_soon_product = true
+  endif
+%}
+{% if section.settings.enable_sticky_add_to_cart and is_coming_soon_product == false %}
   {% liquid
     assign current_variant = product.selected_or_first_available_variant
     # Get the initial quantity based on quantity rules
