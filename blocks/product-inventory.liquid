@@ -2,6 +2,11 @@
 
 {%- liquid
   assign block_settings = block.settings
+  assign product_ref = closest.product
+  assign is_coming_soon = false
+  if product_ref.tags contains 'coming-soon'
+    assign is_coming_soon = true
+  endif
   assign variant = closest.product.selected_or_first_available_variant
   if variant.inventory_management == 'shopify'
     assign inventory_managed = true
@@ -42,6 +47,7 @@
   endif
 -%}
 
+{%- unless is_coming_soon -%}
 <product-inventory
   class="
     product-inventory spacing-style
@@ -75,6 +81,7 @@
     </span>
   </span>
 </product-inventory>
+{%- endunless -%}
 
 {% stylesheet %}
   .product-inventory__status {
